@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>Car Price Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300&display=swap" rel="stylesheet">
+    <style>
+        label {
+            display: block;
+        }
+        body {
+            font-family: 'Heebo Light', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+        <h1>Car Price Predictor</h1>
+        <h2>Enter the car data:</h2>
+        <form id="measurement-form" action="{{ url_for('predict') }}" method="post">
+            <label for="manufactor">Manufactor:</label>
+            <input type="text" id="manufactor" name="manufactor" value="{{ form_data.get('manufactor', '') }}"><br><br>
+            <label for="Year">Year:</label>
+            <input type="text" id="Year" name="Year" value="{{ form_data.get('Year', '') }}"><br><br>
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model" value="{{ form_data.get('model', '') }}"><br><br>
+            <label for="Hand">Hand:</label>
+            <input type="text" id="Hand" name="Hand" value="{{ form_data.get('Hand', '') }}"><br><br>
+            <label for="Gear">Gear:</label>
+            <input type="text" id="Gear" name="Gear" value="{{ form_data.get('Gear', '') }}"><br><br>
+            <label for="capacity_Engine">Engine Capacity:</label>
+            <input type="text" id="capacity_Engine" name="capacity_Engine" value="{{ form_data.get('capacity_Engine', '') }}"><br><br>
+            <label for="Engine_type">Engine type:</label>
+            <input type="text" id="Engine_type" name="Engine_type" value="{{ form_data.get('Engine_type', '') }}"><br><br>
+            <label for="Prev_ownership">Previous Ownership:</label>
+            <input type="text" id="Prev_ownership" name="Prev_ownership" value="{{ form_data.get('Prev_ownership', '') }}"><br><br>
+            <label for="Curr_ownership">Current Ownership:</label>
+            <input type="text" id="Curr_ownership" name="Curr_ownership" value="{{ form_data.get('Curr_ownership', '') }}"><br><br>
+            <label for="Pic_num">Num of images:</label>
+            <input type="text" id="Pic_num" name="Pic_num" value="{{ form_data.get('Pic_num', '') }}"><br><br>
+            <label for="Description">Description:</label>
+            <input type="text" id="Description" name="Description" value="{{ form_data.get('Description', '') }}"><br><br>
+            <label for="Color">Color:</label>
+            <input type="text" id="Color" name="Color" value="{{ form_data.get('Color', '') }}"><br><br>
+            <label for="is_reposted">Is reposted?:</label>
+            <select id="is_reposted" name="is_reposted">
+                <option value="1" {% if form_data.get('is_reposted') == '1' %}selected{% endif %}>Yes</option>
+                <option value="0" {% if form_data.get('is_reposted') == '0' %}selected{% endif %}>No</option>
+            </select><br><br>
+            <button type="submit" class="btn btn-primary px-5">הערך מחיר</button>	
+        </form>
+        <h3>{{ prediction_text }}</h3>
+    </div>
+  </body>
+</html>
